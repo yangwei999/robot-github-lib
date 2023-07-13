@@ -1011,7 +1011,7 @@ func (cl client) GetSinglePR(org, repo string, number int) (*sdk.PullRequest, er
 	return p, nil
 }
 
-func (cl *client) GetBot() (string, error) {
+func (cl client) GetBot() (string, error) {
 	u, _, err := cl.c.Users.Get(context.Background(), "")
 	if err != nil {
 		return "", err
@@ -1020,7 +1020,7 @@ func (cl *client) GetBot() (string, error) {
 	return u.GetLogin(), err
 }
 
-func (cl *client) ListOrg() ([]string, error) {
+func (cl client) ListOrg() ([]string, error) {
 	var r []string
 
 	opt := sdk.ListOptions{PerPage: 99, Page: 1}
