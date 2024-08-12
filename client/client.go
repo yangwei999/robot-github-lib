@@ -1043,3 +1043,20 @@ func (cl client) ListOrg() ([]string, error) {
 
 	return r, nil
 }
+
+func (cl client) ListCommits(org, repo, path string) ([]*sdk.RepositoryCommit, error) {
+	opt := sdk.CommitsListOptions{
+		Path: path,
+		ListOptions: sdk.ListOptions{
+			PerPage: 99,
+			Page:    1,
+		},
+	}
+
+	cs, _, err := cl.c.Repositories.ListCommits(context.Background(), org, repo, &opt)
+	if err != nil {
+		return nil, err
+	}
+
+	return cs, nil
+}

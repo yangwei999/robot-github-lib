@@ -72,4 +72,5 @@ type Client interface {
 	GetSinglePR(org, repo string, number int) (*sdk.PullRequest, error)
 	GetBot() (string, error)
 	ListOrg() ([]string, error)
+	ListCommits(org, repo, path string) ([]*sdk.RepositoryCommit, error)
 }
